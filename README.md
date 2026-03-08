@@ -2,6 +2,18 @@
 
 Simulation und Vergleich mehrerer Regler für eine Duscharmatur mit zwei Stellgrößen (Warm- und Kaltventil) und zwei Regelgrößen (Temperatur und Durchfluss).
 
+## Inhaltsverzeichnis
+
+- [Ziel](#ziel)
+- [Abbildungen](#abbildungen)
+- [Modell in Kurzform](#modell-in-kurzform)
+- [Physik des Modells](#physik-des-modells)
+- [Implementierte Regler](#implementierte-regler)
+- [Schnellstart (MATLAB)](#schnellstart-matlab)
+- [Zentrale Dateien](#zentrale-dateien)
+- [Voraussetzungen](#voraussetzungen)
+- [Hinweise](#hinweise)
+
 ## Ziel
 
 Das Projekt untersucht, wie gut verschiedene Regler ein gekoppeltes MIMO-System führen, wenn sich Sollwerte ändern und Störungen auftreten (z. B. Druckabfall auf der Warmwasserseite).
@@ -19,7 +31,6 @@ Das Projekt untersucht, wie gut verschiedene Regler ein gekoppeltes MIMO-System 
 ### Reglervergleich Sollwerte-Verlauf: "Gewitterdusche"
 
 ![Reglervergleich Dusche](assets/CompareShower.png)
-Das Bild zeigt das Regelverhalten von drei Reglern auf einen anspruchsvollen Sollwerte-Verlauf von Temperatur sowie Fluss. 
 
 ## Modell in Kurzform
 
@@ -51,9 +62,7 @@ $$
 - Die Mischtemperatur folgt einer Energiebilanz im Volumen `V_mix`:
 
 $$
-\frac{dT_{mix}}{dt}
-=
-\frac{Q_h T_h + Q_c T_c - Q_{out} T_{mix}}{V_{mix}}
+\frac{dT_{mix}}{dt} = \frac{Q_h T_h + Q_c T_c - Q_{out} T_{mix}}{V_{mix}}
 $$
 
 
@@ -76,7 +85,7 @@ Damit bildet das Modell die wichtigsten Effekte ab: nichtlinearen Durchfluss, th
 
 - `PI`: Zwei SISO-PI-Regler auf Diagonalpfaden
 - `LQR`: Zustandsrückführung auf linearisiertem Modell
-- `LQI`: LQR mit Integratorzuständen für stationäre Genauigkeit
+- `LQI`: LQR mit Integratorzuständen für stationäre Genauigkeit und Robustheit gegenüber Störungen
 - `Decoupled`: Statische Entkopplung + PI-Regler
 
 
